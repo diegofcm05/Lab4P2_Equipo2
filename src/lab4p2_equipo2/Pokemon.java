@@ -10,14 +10,15 @@ package lab4p2_equipo2;
  */
 public class Pokemon {
     private String especie,estado;
-    private int expacum,expne,hp,atk,def,sp,spe;
+    private int expacum,expne,hp,atk,def,sp,spe,nivel;
     private Movimiento [] ataques=new Movimiento [4];
 
     public Pokemon() {
     }
 
-    public Pokemon(String especie, String estado, int expacum, int expne, int hp, int atk, int def, int sp, int spe) {
+    public Pokemon(String especie, int nivel, String estado, int expacum, int expne, int hp, int atk, int def, int sp, int spe) {
         this.especie = especie;
+        this.nivel = nivel;
         this.estado = estado;
         this.expacum = expacum;
         this.expne = expne;
@@ -26,6 +27,7 @@ public class Pokemon {
         this.def = def;
         this.sp = sp;
         this.spe = spe;
+        
     }
 
     public String getEspecie() {
@@ -35,6 +37,16 @@ public class Pokemon {
     public void setEspecie(String especie) {
         this.especie = especie;
     }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+    
+    
 
     public String getEstado() {
         return estado;
@@ -99,6 +111,8 @@ public class Pokemon {
     public void setSpe(int spe) {
         this.spe = spe;
     }
+    
+    
 
     public Movimiento[] getAtaques() {
         return ataques;

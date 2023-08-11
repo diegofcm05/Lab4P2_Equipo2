@@ -58,6 +58,113 @@ public class Lab4P2_Equipo2 {
                         System.out.println("Necesita agregar por lo menos 1 entrenador para ingresar a esta opcion.");
                     }
                     else{
+                        System.out.println("A que opcion desea ingresar?");
+                        System.out.println("1. Capturar Pokemon");
+                        System.out.println("2. Entrenar Pokemon");
+                        String indione = scs.nextLine();
+                        while (!checknum(indione) || Integer.parseInt(indione)<1 || Integer.parseInt(indione)>2){
+                            System.out.println("Ingrese un numero valido, por favor.");
+                            indione = scs.nextLine();
+                        }
+                        if(Integer.parseInt(indione) == 1){
+                            System.out.println("Seleccione el entrenador");
+                            for (Entrenador ent: entrenadores){
+                                    System.out.println((entrenadores.indexOf(ent)+1)+"- "+ent);
+                            }
+                            String ind = scs.nextLine();
+                            while (!checknum(ind)){
+                                System.out.println("Ingrese un NUMERO, por favor.");
+                                ind = scs.nextLine();
+                            }
+                            if (Integer.parseInt(ind)>0 && Integer.parseInt(ind)<= entrenadores.size()){
+                                Pokemon a = addPokemon();
+                                if (entrenadores.get(Integer.parseInt(ind)-1).getEquipo().length<6){
+                                   entrenadores.get(Integer.parseInt(ind)-1).getEquipo()[entrenadores.get(Integer.parseInt(ind)-1).getEquipo().length] =a;
+                                    System.out.println("Su pokemon ha sido agregado al equipo!");
+                                }
+                                else{
+                                    entrenadores.get(Integer.parseInt(ind)-1).getCaja().add(a);
+                                    System.out.println("Su pokemon ha sido transferido a la caja!");
+                                }
+                            }
+                            else{
+                                System.out.println("Indice fuera de rango, regresara al menu.");
+                            }
+                            
+                        }
+                        else{
+                            System.out.println("A continuacion entrenara un pokemon!");
+                            System.out.println("Seleccione el entrenador");
+                            for (Entrenador ent: entrenadores){
+                                    System.out.println((entrenadores.indexOf(ent)+1)+"- "+ent);
+                            }
+                            String ind = scs.nextLine();
+                            while (!checknum(ind)){
+                                System.out.println("Ingrese un NUMERO, por favor.");
+                                ind = scs.nextLine();
+                            }
+                            if (Integer.parseInt(ind)>0 && Integer.parseInt(ind)<= entrenadores.size()){
+                                System.out.println("Seleccione la ubicacion del Pokemon que desea entrenar: ");
+                                System.out.println("1. Esta en el equipo.");
+                                System.out.println("2. Esta en la caja.");
+                                String opx = scs.nextLine();
+                                while (!checknum(opx) || Integer.parseInt(opx)<1 || Integer.parseInt(opx)>2){
+                                    System.out.println("Ingrese un numero valido, por favor.");
+                                    opx = scs.nextLine();
+                                }
+                                if (Integer.parseInt(opx) ==1 ){
+                                    Pokemon [] eq = entrenadores.get(Integer.parseInt(ind)-1).getEquipo();
+                                    System.out.println("Escoga el pokemon:");
+                                    for (int i = 0; i < eq.length; i++) {
+                                        System.out.println((i+1)+"- "+eq[i]);
+
+                                    }
+                                    String ind2 = scs.nextLine();
+                                    while (!checknum(ind2) || Integer.parseInt(opx)<1 || Integer.parseInt(opx)>eq.length){
+                                        System.out.println("Ingrese un numero valido, por favor.");
+                                        ind2 = scs.nextLine();
+                                    }
+                                    int mult = ran.nextInt(3);
+                                    int exp = 100+ran.nextInt(4900);
+                                    int expantes = eq[Integer.parseInt(ind2)-1].getExpacum();
+                                    int expnueva = mult*exp;
+                                    eq[Integer.parseInt(ind2)-1].setExpacum(expantes+expnueva);
+                                    while (eq[Integer.parseInt(ind2)-1].getExpacum()> eq[Integer.parseInt(ind2)-1].getExpne()){
+                                        eq[Integer.parseInt(ind2)-1].setNivel( eq[Integer.parseInt(ind2)-1].getNivel()+1);
+                                        System.out.println("Su pokemon ha subido de nivel!");
+                                        eq[Integer.parseInt(ind2)-1].setExpacum(eq[Integer.parseInt(ind2)-1].getExpacum()-eq[Integer.parseInt(ind2)-1].getExpne());
+                                    }
+                                }
+                                else{
+
+                                    ArrayList<Pokemon> eq = entrenadores.get(Integer.parseInt(ind)).getCaja();
+                                    System.out.println("Escoga el pokemon:");
+                                    for (Pokemon pokemon : eq) {
+                                        System.out.println((eq.indexOf(pokemon)+1)+"- "+pokemon);
+                                    }
+                                    String ind2 = scs.nextLine();
+                                    while (!checknum(ind2) || Integer.parseInt(opx)<1 || Integer.parseInt(opx)>eq.size()){
+                                        System.out.println("Ingrese un numero valido, por favor.");
+                                        ind2 = scs.nextLine();
+                                    }
+                                    int mult = ran.nextInt(3);
+                                    int exp = 100+ran.nextInt(4900);
+                                    int expantes = eq.get(Integer.parseInt(ind2)-1).getExpacum();
+                                    int expnueva = mult*exp;
+                                    eq.get(Integer.parseInt(ind2)-1).setExpacum(expantes+expnueva);
+                                    while (eq.get(Integer.parseInt(ind2)-1).getExpacum()>eq.get(Integer.parseInt(ind2)-1).getExpne()){
+                                        eq.get(Integer.parseInt(ind2)-1).setNivel(eq.get(Integer.parseInt(ind2)-1).getNivel()+1);
+                                        System.out.println("Su pokemon ha subido de nivel!");
+                                        eq.get(Integer.parseInt(ind2)-1).setExpacum(eq.get(Integer.parseInt(ind2)-1).getExpacum()-eq.get(Integer.parseInt(ind2)-1).getExpne());
+                                    }
+
+                                }
+
+                            }
+                            
+                        }
+                        
+                       
                         
                     }
                     break;
@@ -175,10 +282,10 @@ public class Lab4P2_Equipo2 {
             printMovimientos();
             System.out.println("Movimiento de el slot#"+(cont+1));
             System.out.println("Ingrese el indice del movimiento que desea agregarle al pokemon: ");
-            mov=sc.nextLine();
+            mov=scs.nextLine();
             while(!checknum(mov)){
                 System.out.println("Ingrese un indice valido: ");
-                mov=sc.nextLine();
+                mov=scs.nextLine();
             }
             while(Integer.parseInt(mov)<1||Integer.parseInt(mov)>Movements.size()){
                 do{
@@ -190,10 +297,10 @@ public class Lab4P2_Equipo2 {
             cont++;
         }
         System.out.println("Ingrese la cantidad de vida del pokemon: ");
-        String Hp=sc.nextLine();
+        String Hp=scs.nextLine();
         while(!checknum(Hp)){
             System.out.println("Ingrese un Numero valido: ");
-            Hp=sc.nextLine();
+            Hp=scs.nextLine();
         }
         while(Integer.parseInt(Hp)<1){
             do{
@@ -203,10 +310,10 @@ public class Lab4P2_Equipo2 {
         }
         
         System.out.println("Ingrese la cantidad de ataque del pokemon: ");
-        String Atk=sc.nextLine();
+        String Atk=scs.nextLine();
         while(!checknum(Atk)){
             System.out.println("Ingrese un Numero valido: ");
-            Atk=sc.nextLine();
+            Atk=scs.nextLine();
         }
         while(Integer.parseInt(Atk)<1){
             do{
@@ -216,10 +323,10 @@ public class Lab4P2_Equipo2 {
         }
         
         System.out.println("Ingrese la cantidad de Defensa del pokemon: ");
-        String Def=sc.nextLine();
+        String Def=scs.nextLine();
         while(!checknum(Def)){
             System.out.println("Ingrese un Numero valido: ");
-            Def=sc.nextLine();
+            Def=scs.nextLine();
         }
         while(Integer.parseInt(Def)<1){
             do{
@@ -229,10 +336,10 @@ public class Lab4P2_Equipo2 {
         }
         
         System.out.println("Ingrese la cantidad de ataque especial del pokemon: ");
-        String Sp=sc.nextLine();
+        String Sp=scs.nextLine();
         while(!checknum(Sp)){
             System.out.println("Ingrese un Numero valido: ");
-            Sp=sc.nextLine();
+            Sp=scs.nextLine();
         }
         while(Integer.parseInt(Sp)<1){
             do{
@@ -241,10 +348,10 @@ public class Lab4P2_Equipo2 {
             }while(!checknum(Sp));
         }
         System.out.println("Ingrese la cantidad de velocidad del pokemon: ");
-        String vel=sc.nextLine();
+        String vel=scs.nextLine();
         while(!checknum(vel)){
             System.out.println("Ingrese un Numero valido: ");
-            vel=sc.nextLine();
+            vel=scs.nextLine();
         }
         while(Integer.parseInt(vel)<1){
             do{
@@ -253,7 +360,7 @@ public class Lab4P2_Equipo2 {
             }while(!checknum(vel));
         }
         
-        Pokemon x = new Pokemon(nombre, "Neutral", 0, Integer.parseInt(ex),Integer.parseInt(Hp) , Integer.parseInt(Atk), Integer.parseInt(Def), Integer.parseInt(Sp), Integer.parseInt(vel));
+        Pokemon x = new Pokemon(nombre,Integer.parseInt(level), "Neutral", 0, Integer.parseInt(ex),Integer.parseInt(Hp) , Integer.parseInt(Atk), Integer.parseInt(Def), Integer.parseInt(Sp), Integer.parseInt(vel));
         return x;
         
     }
@@ -262,5 +369,7 @@ public class Lab4P2_Equipo2 {
             System.out.println((Movements.indexOf(Movement)+1)+".- "+Movement);
         }
     }
+    
+    
     
 }
