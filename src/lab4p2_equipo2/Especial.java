@@ -15,11 +15,13 @@ public class Especial extends Movimiento{
     private int poder;
     private int presicion;
 
-    public Especial(int poder, int presicion, String nombre, String descripcion) {
-        super(nombre, descripcion);
+    public Especial(int poder, int presicion, String nombre, String descripcion, String tipo) {
+        super(nombre, descripcion, tipo);
         this.poder = poder;
         this.presicion = presicion;
     }
+
+    
 
     public Especial() {
         super();

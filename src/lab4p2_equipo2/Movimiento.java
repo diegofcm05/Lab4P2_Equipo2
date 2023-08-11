@@ -9,14 +9,23 @@ package lab4p2_equipo2;
  * @author Junnior Sauceda
  */
 public abstract class Movimiento {
-    private String nombre, descripcion;
+    private String nombre, descripcion,tipo;
 
     public Movimiento() {
     }
 
-    public Movimiento(String nombre, String descripcion) {
+    public Movimiento(String nombre, String descripcion, String tipo) {
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.tipo = tipo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getNombre() {

@@ -139,6 +139,8 @@ public class Lab4P2_Equipo2 {
     
     public static Pokemon addPokemon(){
         System.out.println("Capturo un Pokemon! Ingrese los siguientes datos:");
+        System.out.println("Ingrese la especie del pokemon: ");
+        String nombre=scs.nextLine();
         Pokemon x = new Pokemon();
         return x;
         

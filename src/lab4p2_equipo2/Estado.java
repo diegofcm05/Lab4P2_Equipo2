@@ -14,10 +14,12 @@ public class Estado extends Movimiento{
     
     private String probest;
 
-    public Estado(String probest, String nombre, String descripcion) {
-        super(nombre, descripcion);
+    public Estado(String probest, String nombre, String descripcion, String tipo) {
+        super(nombre, descripcion, tipo);
         this.probest = probest;
     }
+
+   
 
     public Estado() {
         super();

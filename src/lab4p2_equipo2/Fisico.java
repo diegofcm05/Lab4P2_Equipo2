@@ -15,11 +15,13 @@ public class Fisico extends Movimiento{
     private int poder;
     private int presicion;
 
-    public Fisico(int poder, int presicion, String nombre, String descripcion) {
-        super(nombre, descripcion);
+    public Fisico(int poder, int presicion, String nombre, String descripcion, String tipo) {
+        super(nombre, descripcion, tipo);
         this.poder = poder;
         this.presicion = presicion;
     }
+
+    
 
     public Fisico() {
         super();
