@@ -230,7 +230,8 @@ public class Lab4P2_Equipo2 {
                 case 3: {
                     if (entrenadores.size() < 1) {
                         System.out.println("Necesita agregar por lo menos 1 entrenador para ingresar a esta opcion.");
-                    } else {
+                    } 
+                    else {
                         System.out.println("A que opcion desea ingresar?");
                         System.out.println("1. Capturar Pokemon");
                         System.out.println("2. Entrenar Pokemon");
@@ -252,8 +253,20 @@ public class Lab4P2_Equipo2 {
                                 }
                                 if (Integer.parseInt(ind) > 0 && Integer.parseInt(ind) <= entrenadores.size()) {
                                     Pokemon a = addPokemon();
-                                    if (entrenadores.get(Integer.parseInt(ind) - 1).getEquipo().length < 6) {
-                                        entrenadores.get(Integer.parseInt(ind) - 1).getEquipo()[entrenadores.get(Integer.parseInt(ind) - 1).getEquipo().length] = a;
+                                    int contpok = 0;
+                                    for (int i = 0; i < entrenadores.get(Integer.parseInt(ind)-1).getEquipo().length; i++) {
+                                            if (!(entrenadores.get(Integer.parseInt(ind)-1).getEquipo()[i] == null)){
+                                                    contpok++;
+                                            }
+                                    }
+                                    if (contpok < 6) {
+                                        for (int i = 0; i < entrenadores.get(Integer.parseInt(ind)-1).getEquipo().length; i++) {
+                                            if (!(entrenadores.get(Integer.parseInt(ind)-1).getEquipo()[i] == null)){
+                                                    contpok++;
+                                            }
+                                        }
+                                        entrenadores.get(Integer.parseInt(ind)-1).getEquipo()[contpok] = a;
+                                        
                                         System.out.println("Su pokemon ha sido agregado al equipo!");
                                     } else {
                                         entrenadores.get(Integer.parseInt(ind) - 1).getCaja().add(a);
@@ -297,6 +310,8 @@ public class Lab4P2_Equipo2 {
                                     }
                                     int mult = ran.nextInt(3);
                                     int exp = 100 + ran.nextInt(4900);
+                                    System.out.println(mult);
+                                    System.out.println(exp);
                                     int expantes = eq[Integer.parseInt(ind2) - 1].getExpacum();
                                     int expnueva = mult * exp;
                                     eq[Integer.parseInt(ind2) - 1].setExpacum(expantes + expnueva);

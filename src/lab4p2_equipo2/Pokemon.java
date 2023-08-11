@@ -45,8 +45,6 @@ public class Pokemon {
     public void setNivel(int nivel) {
         this.nivel = nivel;
     }
-    
-    
 
     public String getEstado() {
         return estado;
