@@ -4,6 +4,8 @@
  */
 package lab4p2_equipo2;
 
+import java.util.Random;
+
 /**
  *
  * @author dfcm9
@@ -35,7 +37,13 @@ public class Estado extends Movimiento{
         return "Estado{" + "probest=" + probest + '}';
     }
     
-    
+    @Override
+    public int Movement(Pokemon atacante, Pokemon Defensor) {
+        Random ran1=new Random();
+        int rand1=ran1.nextInt(100-1+1)+1;
+        
+        return rand1;
+    }
     
     
 }

@@ -4,14 +4,16 @@
  */
 package lab4p2_equipo2;
 
+import java.util.Random;
+
 /**
  *
  * @author dfcm9
  */
 public class Fisico extends Movimiento{
     
-    int poder;
-    int presicion;
+    private int poder;
+    private int presicion;
 
     public Fisico(int poder, int presicion, String nombre, String descripcion) {
         super(nombre, descripcion);
@@ -44,7 +46,19 @@ public class Fisico extends Movimiento{
         return "Fisico{" + "poder=" + poder + ", presicion=" + presicion + '}';
     }
     
-    
+    @Override
+    public int Movement(Pokemon atacante, Pokemon Defensor) {
+        Random ran1=new Random();
+        int rand1=ran1.nextInt(50-1+1)+1;
+        if(atacante.getAtk()>Defensor.getDef()){
+            rand1*=2;
+        }
+        else if(atacante.getAtk()<Defensor.getDef()){
+            rand1/=2;
+        }
+        
+        return rand1;
+    }
     
     
     
