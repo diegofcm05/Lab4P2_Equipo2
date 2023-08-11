@@ -46,8 +46,10 @@ public abstract class Movimiento {
 
     @Override
     public String toString() {
-        return "Movimiento{" + "Nombre=" + nombre + ", Descripcion=" + descripcion + '}';
+        return "Movimiento{" + "nombre=" + nombre + ", descripcion=" + descripcion + ", tipo=" + tipo + '}';
     }
+
+    
     
     public abstract int Movement(Pokemon atacante,Pokemon Defensor);
     

@@ -5,6 +5,7 @@
 package lab4p2_equipo2;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -16,6 +17,8 @@ public class Lab4P2_Equipo2 {
     static Scanner sc = new Scanner(System.in);
     static Scanner scs = new Scanner(System.in);
     static ArrayList<Entrenador> entrenadores = new ArrayList();
+    static ArrayList<Movimiento> Movements = new ArrayList();
+    static Random ran=new Random();
 
     /**
      * @param args the command line arguments
@@ -141,9 +144,123 @@ public class Lab4P2_Equipo2 {
         System.out.println("Capturo un Pokemon! Ingrese los siguientes datos:");
         System.out.println("Ingrese la especie del pokemon: ");
         String nombre=scs.nextLine();
-        Pokemon x = new Pokemon();
+        System.out.println("Ingrese el nivel de pokemon: ");
+        String level=scs.nextLine();
+        while (!checknum(level)){
+            System.out.println("Ingrese un NUMERO valido: ");
+            level=scs.nextLine();
+        }
+        while(Integer.parseInt(level)<1){
+            do{
+            System.out.println("Ingrese un NUMERO valido: ");
+            level=scs.nextLine();
+            }while(!checknum(level));
+        }
+        System.out.println("Ingrese la cantidad de puntos que necesita el pokemon para subir de nivel: ");
+        String ex=scs.nextLine();
+        while (!checknum(ex)){
+            System.out.println("Ingrese un NUMERO valido: ");
+            ex=scs.nextLine();
+        }
+        while(Integer.parseInt(ex)<1){
+            do{
+                System.out.println("Ingrese un NUMERO valido: ");
+                ex=scs.nextLine();
+            }while(!checknum(ex));
+        }
+        int cont=0;
+        String mov="";
+        Movimiento[] movi=new Movimiento [4];
+        while(cont<4){
+            printMovimientos();
+            System.out.println("Movimiento de el slot#"+(cont+1));
+            System.out.println("Ingrese el indice del movimiento que desea agregarle al pokemon: ");
+            mov=sc.nextLine();
+            while(!checknum(mov)){
+                System.out.println("Ingrese un indice valido: ");
+                mov=sc.nextLine();
+            }
+            while(Integer.parseInt(mov)<1||Integer.parseInt(mov)>Movements.size()){
+                do{
+                    System.out.println("Ingrese un NUMERO valido: ");
+                    mov=scs.nextLine();
+                }while(!checknum(mov));
+            }
+            movi[cont]=Movements.get(Integer.parseInt(mov)-1);
+            cont++;
+        }
+        System.out.println("Ingrese la cantidad de vida del pokemon: ");
+        String Hp=sc.nextLine();
+        while(!checknum(Hp)){
+            System.out.println("Ingrese un Numero valido: ");
+            Hp=sc.nextLine();
+        }
+        while(Integer.parseInt(Hp)<1){
+            do{
+                System.out.println("Ingrese un NUMERO valido: ");
+                Hp=scs.nextLine();
+            }while(!checknum(Hp));
+        }
+        
+        System.out.println("Ingrese la cantidad de ataque del pokemon: ");
+        String Atk=sc.nextLine();
+        while(!checknum(Atk)){
+            System.out.println("Ingrese un Numero valido: ");
+            Atk=sc.nextLine();
+        }
+        while(Integer.parseInt(Atk)<1){
+            do{
+                System.out.println("Ingrese un NUMERO valido: ");
+                Atk=scs.nextLine();
+            }while(!checknum(Atk));
+        }
+        
+        System.out.println("Ingrese la cantidad de Defensa del pokemon: ");
+        String Def=sc.nextLine();
+        while(!checknum(Def)){
+            System.out.println("Ingrese un Numero valido: ");
+            Def=sc.nextLine();
+        }
+        while(Integer.parseInt(Def)<1){
+            do{
+                System.out.println("Ingrese un NUMERO valido: ");
+                Def=scs.nextLine();
+            }while(!checknum(Def));
+        }
+        
+        System.out.println("Ingrese la cantidad de ataque especial del pokemon: ");
+        String Sp=sc.nextLine();
+        while(!checknum(Sp)){
+            System.out.println("Ingrese un Numero valido: ");
+            Sp=sc.nextLine();
+        }
+        while(Integer.parseInt(Sp)<1){
+            do{
+                System.out.println("Ingrese un NUMERO valido: ");
+                Sp=scs.nextLine();
+            }while(!checknum(Sp));
+        }
+        System.out.println("Ingrese la cantidad de velocidad del pokemon: ");
+        String vel=sc.nextLine();
+        while(!checknum(vel)){
+            System.out.println("Ingrese un Numero valido: ");
+            vel=sc.nextLine();
+        }
+        while(Integer.parseInt(vel)<1){
+            do{
+                System.out.println("Ingrese un NUMERO valido: ");
+                vel=scs.nextLine();
+            }while(!checknum(vel));
+        }
+        
+        Pokemon x = new Pokemon(nombre, "Neutral", 0, Integer.parseInt(ex),Integer.parseInt(Hp) , Integer.parseInt(Atk), Integer.parseInt(Def), Integer.parseInt(Sp), Integer.parseInt(vel));
         return x;
         
+    }
+    public static void printMovimientos(){
+        for (Movimiento Movement : Movements) {
+            System.out.println((Movements.indexOf(Movement)+1)+".- "+Movement);
+        }
     }
     
 }

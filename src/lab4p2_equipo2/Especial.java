@@ -58,7 +58,6 @@ public class Especial extends Movimiento{
         if(suma==rand2){
             rand1*=2;
         }
-        atacante.setHp(atacante.getHp()-rand1);
         
         return rand1;
     }

@@ -11,7 +11,7 @@ package lab4p2_equipo2;
 public class Pokemon {
     private String especie,estado;
     private int expacum,expne,hp,atk,def,sp,spe;
-    private String [] ataques=new String [4];
+    private Movimiento [] ataques=new Movimiento [4];
 
     public Pokemon() {
     }
@@ -100,13 +100,15 @@ public class Pokemon {
         this.spe = spe;
     }
 
-    public String[] getAtaques() {
+    public Movimiento[] getAtaques() {
         return ataques;
     }
 
-    public void setAtaques(String[] ataques) {
+    public void setAtaques(Movimiento[] ataques) {
         this.ataques = ataques;
     }
+
+    
 
     @Override
     public String toString() {
