@@ -8,7 +8,7 @@ package lab4p2_equipo2;
  *
  * @author Junnior Sauceda
  */
-public class Movimiento {
+public abstract class Movimiento {
     private String nombre, descripcion;
 
     public Movimiento() {
@@ -40,6 +40,6 @@ public class Movimiento {
         return "Movimiento{" + "Nombre=" + nombre + ", Descripcion=" + descripcion + '}';
     }
     
-    
+    public abstract int Movement(Pokemon atacante,Pokemon Defensor);
     
 }
