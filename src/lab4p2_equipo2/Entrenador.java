@@ -11,11 +11,11 @@ import java.util.ArrayList;
  * @author dfcm9
  */
 public class Entrenador {
-    
+
     private String nombre;
     private int edad;
     private double dinero;
-    private Pokemon [] equipo = new Pokemon [6];
+    private Pokemon[] equipo = new Pokemon[6];
     private ArrayList<Pokemon> caja = new ArrayList();
 
     public Entrenador(String nombre, int edad, double dinero) {
@@ -69,12 +69,22 @@ public class Entrenador {
 
     @Override
     public String toString() {
-        return "Entrenador{" + "nombre=" + nombre + ", edad=" + edad + ", dinero=" + dinero + ", equipo=" + equipo + ", caja=" + caja + '}';
+        if (equipo[0] != null) {
+            String eq = "[";
+            for (int i = 0; i < equipo.length; i++) {
+                if(equipo[i]==null){
+                    
+                }
+                else{
+                eq += ((Pokemon) equipo[i]).toString() + ", ";
+                }
+            }
+            eq += "]";
+            return "Entrenador{" + "nombre=" + nombre + ", edad=" + edad + ", dinero=" + dinero + ", equipo=" + eq + ", caja=" + caja + '}';
+        }
+        else{
+            return "Entrenador{" + "nombre=" + nombre + ", edad=" + edad + ", dinero=" + dinero + ", equipo=" + "[]" + ", caja=" + caja + '}';
+        }
     }
-    
-    
-    
-    
-    
-    
+
 }

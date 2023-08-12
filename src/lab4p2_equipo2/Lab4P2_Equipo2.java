@@ -48,22 +48,24 @@ public class Lab4P2_Equipo2 {
                     if (entrenadores.size() < 2) {
                         System.out.println("Necesita agregar por lo menos 2 entrenadores para ingresar a esta opcion.");
                     } else {
+                        ArrayList<Entrenador> entrenadores1=entrenadores;
                         System.out.println("Seleccione el entrenador con el que desea jugar Jugador 1");
-                        for (Entrenador ent : entrenadores) {
-                            System.out.println((entrenadores.indexOf(ent) + 1) + "- " + ent);
+                        for (Entrenador ent : entrenadores1) {
+                            System.out.println((entrenadores1.indexOf(ent) + 1) + "- " + ent);
                         }
                         String ind = scs.nextLine();
                         while (!checknum(ind)) {
                             System.out.println("Ingrese un NUMERO, por favor.");
                             ind = scs.nextLine();
                         }
-                        while (Integer.parseInt(ind) < 1 || Integer.parseInt(ind) > entrenadores.size()) {
+                        while (Integer.parseInt(ind) < 1 || Integer.parseInt(ind) > entrenadores1.size()) {
                             do {
                                 System.out.println("Ingrese un NUMERO valido: ");
                                 ind = scs.nextLine();
                             } while (!checknum(ind));
                         }
-                        Entrenador J1 = entrenadores.get(Integer.parseInt(ind) - 1);
+                        Entrenador J1 = entrenadores1.get(Integer.parseInt(ind) - 1);
+                        entrenadores1.remove(Integer.parseInt(ind) - 1);
                         Pokemon[] eq = J1.getEquipo();
                         System.out.println("Escoga el pokemon:");
                         for (int i = 0; i < eq.length; i++) {
@@ -77,24 +79,24 @@ public class Lab4P2_Equipo2 {
                                 ind2 = scs.nextLine();
                             } while (Integer.parseInt(ind2) < 1 || Integer.parseInt(ind2) > eq.length || eq[Integer.parseInt(ind2)] == null);
                         }
-                        Pokemon P1 = eq[Integer.parseInt(ind2)];
+                        Pokemon P1 = eq[Integer.parseInt(ind2)-1];
 
                         System.out.println("Seleccione el entrenador con el que desea jugar Jugador 2");
-                        for (Entrenador ent : entrenadores) {
-                            System.out.println((entrenadores.indexOf(ent) + 1) + "- " + ent);
+                        for (Entrenador ent : entrenadores1) {
+                            System.out.println((entrenadores1.indexOf(ent) + 1) + "- " + ent);
                         }
                         ind = scs.nextLine();
                         while (!checknum(ind)) {
                             System.out.println("Ingrese un NUMERO, por favor.");
                             ind = scs.nextLine();
                         }
-                        while (Integer.parseInt(ind) < 1 || Integer.parseInt(ind) > entrenadores.size()) {
+                        while (Integer.parseInt(ind) < 1 || Integer.parseInt(ind) > entrenadores1.size()) {
                             do {
                                 System.out.println("Ingrese un NUMERO valido: ");
                                 ind = scs.nextLine();
                             } while (!checknum(ind));
                         }
-                        Entrenador J2 = entrenadores.get(Integer.parseInt(ind) - 1);
+                        Entrenador J2 = entrenadores1.get(Integer.parseInt(ind) - 1);
                         eq = J2.getEquipo();
                         System.out.println("Escoga el pokemon:");
                         for (int i = 0; i < eq.length; i++) {
@@ -108,7 +110,7 @@ public class Lab4P2_Equipo2 {
                                 ind2 = scs.nextLine();
                             } while (Integer.parseInt(ind2) < 1 || Integer.parseInt(ind2) > eq.length || eq[Integer.parseInt(ind2)] == null);
                         }
-                        Pokemon P2 = eq[Integer.parseInt(ind2)];
+                        Pokemon P2 = eq[Integer.parseInt(ind2)-1];
                         boolean vel = true;
                         if (P1.getSpe() > P2.getSpe()) {
                             vel = true;
@@ -241,7 +243,7 @@ public class Lab4P2_Equipo2 {
                             indione = scs.nextLine();
                         }
                         if (Integer.parseInt(indione) == 1) {
-                            if (Movements.size() < 4) {
+                            if (Movements.size() > 3) {
                                 System.out.println("Seleccione el entrenador");
                                 for (Entrenador ent : entrenadores) {
                                     System.out.println((entrenadores.indexOf(ent) + 1) + "- " + ent);
@@ -572,6 +574,7 @@ public class Lab4P2_Equipo2 {
         }
         int cont = 0;
         String mov = "";
+        ArrayList<Integer> muv=new ArrayList<>();
         Movimiento[] movi = new Movimiento[4];
         while (cont < 4) {
             printMovimientos();
@@ -582,13 +585,14 @@ public class Lab4P2_Equipo2 {
                 System.out.println("Ingrese un indice valido: ");
                 mov = scs.nextLine();
             }
-            while (Integer.parseInt(mov) < 1 || Integer.parseInt(mov) > Movements.size()) {
+            while (Integer.parseInt(mov) < 1 || Integer.parseInt(mov) > Movements.size()||muv.contains(Integer.parseInt(mov))) {
                 do {
                     System.out.println("Ingrese un NUMERO valido: ");
                     mov = scs.nextLine();
                 } while (!checknum(mov));
             }
             movi[cont] = Movements.get(Integer.parseInt(mov) - 1);
+            muv.add(Integer.parseInt(mov));
             cont++;
         }
         System.out.println("Ingrese la cantidad de vida del pokemon: ");
@@ -656,6 +660,7 @@ public class Lab4P2_Equipo2 {
         }
 
         Pokemon x = new Pokemon(nombre, Integer.parseInt(level), "Neutral", 0, Integer.parseInt(ex), Integer.parseInt(Hp), Integer.parseInt(Atk), Integer.parseInt(Def), Integer.parseInt(Sp), Integer.parseInt(vel));
+        x.setAtaques(movi);
         return x;
 
     }
