@@ -142,8 +142,12 @@ public class Lab4P2_Equipo2 {
                                         P2.setEstado(((Estado) P1.getAtaques()[Integer.parseInt(mov) - 1]).getProbest());
                                         System.out.println(P2.getEspecie() + " esta en el estado " + ((Estado) P1.getAtaques()[Integer.parseInt(mov) - 1]).getProbest());
                                     }
+                                    else{
+                                        System.out.println(P2.getEspecie()+" se ha resistido al ataque!");
+                                    }
                                 } else {
                                     P2.setHp(P2.getHp() - (P1.getAtaques()[Integer.parseInt(mov) - 1].Movement(P1, P2)));
+                                    
                                 }
 
                                 System.out.println("Turno del Jugador 2: ");
@@ -256,6 +260,7 @@ public class Lab4P2_Equipo2 {
                                 if (Integer.parseInt(ind) > 0 && Integer.parseInt(ind) <= entrenadores.size()) {
                                     Pokemon a = addPokemon();
                                     int contpok = 0;
+                                    int contpok2 = 0;
                                     for (int i = 0; i < entrenadores.get(Integer.parseInt(ind)-1).getEquipo().length; i++) {
                                             if (!(entrenadores.get(Integer.parseInt(ind)-1).getEquipo()[i] == null)){
                                                     contpok++;
@@ -264,10 +269,10 @@ public class Lab4P2_Equipo2 {
                                     if (contpok < 6) {
                                         for (int i = 0; i < entrenadores.get(Integer.parseInt(ind)-1).getEquipo().length; i++) {
                                             if (!(entrenadores.get(Integer.parseInt(ind)-1).getEquipo()[i] == null)){
-                                                    contpok++;
+                                                    contpok2++;
                                             }
                                         }
-                                        entrenadores.get(Integer.parseInt(ind)-1).getEquipo()[contpok] = a;
+                                        entrenadores.get(Integer.parseInt(ind)-1).getEquipo()[contpok2] = a;
                                         
                                         System.out.println("Su pokemon ha sido agregado al equipo!");
                                     } else {
@@ -302,18 +307,21 @@ public class Lab4P2_Equipo2 {
                                     Pokemon[] eq = entrenadores.get(Integer.parseInt(ind) - 1).getEquipo();
                                     System.out.println("Escoga el pokemon:");
                                     for (int i = 0; i < eq.length; i++) {
-                                        System.out.println((i + 1) + "- " + eq[i]);
+                                        if(eq[i]!= null){
+                                            System.out.println((i + 1) + "- " + eq[i]);
+                                        }
+                                        
 
                                     }
                                     String ind2 = scs.nextLine();
-                                    while (!checknum(ind2) || Integer.parseInt(opx) < 1 || Integer.parseInt(opx) > eq.length) {
+                                    while (!checknum(ind2) || Integer.parseInt(opx) < 1 || Integer.parseInt(opx) > eq.length || eq[Integer.parseInt(ind2)-1] == null) {
                                         System.out.println("Ingrese un numero valido, por favor.");
                                         ind2 = scs.nextLine();
                                     }
                                     int mult = ran.nextInt(3);
                                     int exp = 100 + ran.nextInt(4900);
-                                    System.out.println(mult);
-                                    System.out.println(exp);
+                                    System.out.println("Multiplier: "+mult);
+                                    System.out.println("Experiencia: "+exp);
                                     int expantes = eq[Integer.parseInt(ind2) - 1].getExpacum();
                                     int expnueva = mult * exp;
                                     eq[Integer.parseInt(ind2) - 1].setExpacum(expantes + expnueva);
@@ -336,6 +344,8 @@ public class Lab4P2_Equipo2 {
                                     }
                                     int mult = ran.nextInt(3);
                                     int exp = 100 + ran.nextInt(4900);
+                                    System.out.println("Multiplier: "+mult);
+                                    System.out.println("Experiencia: "+exp);
                                     int expantes = eq.get(Integer.parseInt(ind2) - 1).getExpacum();
                                     int expnueva = mult * exp;
                                     eq.get(Integer.parseInt(ind2) - 1).setExpacum(expantes + expnueva);
